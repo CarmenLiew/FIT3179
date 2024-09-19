@@ -16,7 +16,7 @@ Benin,BEN,2021,46.07704
 Bermuda,BMU,2021,80.723
 Bhutan,BTN,2021,90.804
 Bolivia,BOL,2021,91.49611
-Bosnia and Herzegovina,BIH,2021,84.96984
+Bosnia and Herz.,BIH,2021,84.96984
 Botswana,BWA,2021,70.01839
 Brazil,BRA,2021,106.6519
 British Virgin Islands,VGB,2021,84.10372
@@ -33,16 +33,16 @@ Chile,CHL,2021,106.67352
 Colombia,COL,2021,102.988
 Cook Islands,COK,2021,104.51791
 Costa Rica,CRI,2021,141.20271
-Cote d'Ivoire,CIV,2021,57.28151
+Côte d'Ivoire,CIV,2021,57.28151
 Croatia,HRV,2021,102.9841
 Cuba,CUB,2021,99.63522
 Cyprus,CYP,2021,102.4995
 Czechia,CZE,2021,100.09785
-Democratic Republic of Congo,COD,2021,56.88602
+Dem. Rep. Congo,COD,2021,56.88602
 Denmark,DNK,2021,131.77202
 Djibouti,DJI,2021,43.32403
 Dominica,DMA,2021,87.17142
-Dominican Republic,DOM,2021,75.70448
+Dominican Rep.,DOM,2021,75.70448
 East Asia and Pacific (WB),,2021,90.56791
 Eastern and South-Eastern Asia (SDG),,2021,90.37992
 Ecuador,ECU,2021,99.65603
@@ -155,7 +155,7 @@ Turks and Caicos Islands,TCA,2021,97.49503
 Tuvalu,TUV,2021,90.00719
 Ukraine,UKR,2021,84.65163
 United Kingdom,GBR,2021,113.03562
-United States,USA,2021,101.19249
+United States of America,USA,2021,101.19249
 Upper-middle income countries,,2021,95.52065
 Uruguay,URY,2021,120.23649
 Uzbekistan,UZB,2021,87.882
