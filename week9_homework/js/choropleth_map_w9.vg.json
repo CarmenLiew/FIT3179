@@ -39,7 +39,7 @@
           "lookup": "properties.NAME",
           "from": {
             "data": {
-              "url": "https://raw.githubusercontent.com/CarmenLiew/FIT3179/main/world_gross_enrollment_ratio.csv"
+              "url": "https://raw.githubusercontent.com/CarmenLiew/FIT3179/refs/heads/main/week9_homework/data/world_gross_enrollment_ratio.csv"
             },
             "key": "Country",
             "fields": ["GrossEduRatio"]
