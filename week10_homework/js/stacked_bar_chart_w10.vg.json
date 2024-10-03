@@ -1,0 +1,154 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Number of Private Secondary Schools by State in Malaysia"
+  },
+  "width": 800,
+  "height": 400,
+  "data": {
+    "url": "https://raw.githubusercontent.com/CarmenLiew/FIT3179/refs/heads/main/week10_homework/data/number_of_private_secondary_school_by_state_malaysia.csv",
+    "format": {
+      "type": "csv"
+    }
+  },
+  "params": [
+    {
+      "name": "Year_selection",
+      "bind": {
+        "input": "select",
+        "options": [
+          null,
+          "2018",
+          "2019",
+          "2020",
+          "2021"
+        ],
+        "labels": [
+          "Show All",
+          "2018",
+          "2019",
+          "2020",
+          "2021"
+        ],
+        "name": "Year Selection: "
+      }
+    }
+  ],
+  "transform": [
+    {
+      "filter": "Year_selection == null || datum.Year == Year_selection"
+    },
+    {
+      "filter": "datum.Year > 0"
+    },
+    {
+      "calculate": "'Most of the states have remain consistent number of; private secondary schools over the years'",
+      "as": "text_annotation_raw"
+    },
+    {
+      "calculate": "split(datum.text_annotation_raw, ';')",
+      "as": "text_annotation"
+    }
+  ],
+  "layer": [
+    {
+      "mark": "bar",
+      "encoding": {
+        "x": {
+          "field": "State",
+          "type": "nominal",
+          "axis": {
+            "labelAngle": -90,
+            "labelAlign": "right"
+          }
+        },
+        "y": {
+          "field": "Number_of_School",
+          "type": "quantitative",
+          "title": "Number of Schools"
+        },
+        "color": {
+          "field": "Year",
+          "type": "nominal",
+          "title": "Year",
+          "scale": {
+            "domain": [
+              "2018",
+              "2019",
+              "2020",
+              "2021"
+            ],
+            "range": [
+              "#F8766D",
+              "#7CAE00",
+              "#00BFC4",
+              "#C77CFF"
+            ]
+          }
+        },
+        "tooltip": [
+          {
+            "field": "State",
+            "type": "ordinal",
+            "title": "State"
+          },
+          {
+            "field": "Year",
+            "type": "nominal",
+            "title": "Year"
+          },
+          {
+            "field": "Number_of_School",
+            "type": "quantitative",
+            "title": "Number of Schools"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": -100,
+        "dy": -50,
+        "color": "blue",
+        "fontStyle": "italic"
+      },
+      "encoding": {
+        "x": {
+          "datum": "Selangor"
+        },
+        "y": {
+          "datum": 126
+        },
+        "text": {
+          "value": "Selangor has the highest number of private secondary schools"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 0, 
+        "dy": 0,
+        "color": "blue",
+        "fontStyle": "italic",
+        "fontWeight": "normal"
+      },
+      "encoding": {
+        "x": {
+          "value": 150
+        },
+        "y": {
+          "value": 130
+        },
+        "text": {
+          "field": "text_annotation"
+        }
+      }
+    }
+  ]
+}
