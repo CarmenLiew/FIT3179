@@ -1,0 +1,79 @@
+body{
+	font-family: 'Open Sans', sans-serif;
+	background-color: #f0eae5; /* Light peach background */
+  }
+  
+h1 {
+	font-size: 48px;
+	margin-bottom: 20px;
+	text-align: center; 
+	font-family: 'Times New Roman', serif;
+}
+
+.subtitle-container {
+    width: 100%; /* Adjust this to your desired fixed width, e.g., 80% */
+    margin: 20px auto; /* Center the container */
+    text-align: center; /* Center the text */
+    background-color: #E6E6FA; /* Light purple color (Lavender) */
+    border-radius: 5px; /* Optional: Round the corners */
+}
+
+.subtitle-container h2 {
+    font-family: 'Times New Roman', serif; /* Set the font family */
+    font-size: 30px; /* Adjust the font size */
+    color: #333; /* Set the text color */
+}
+
+.closer-subtitle {
+    margin-top: 5px; /* Adjust this value as needed */
+  }
+
+.page {
+	margin: 0 auto;
+	max-width: 1500px;
+	padding: 50px;
+	padding-top: 35px;
+	box-sizing: border-box;
+	display: flex; 
+    justify-content: center; 
+    flex-direction: column; 
+    align-items: center; 
+}
+
+.flex-container {
+    display: flex; /* Enable flexbox layout */
+    justify-content: space-between; /* Space between the two elements */
+    align-items: flex-start; /* Align items at the start */
+}
+
+.vis-container {
+    flex: 1; /* Allow the visualization to take available space */
+    margin-right: 20px; /* Add space between the visualization and the description */
+}
+
+.description-right {
+    flex: 0 0 300px; /* Set a fixed width for the description */
+    max-width: 300px; 
+	padding-top: 100px;
+}
+
+ul {
+    padding-left: 20;      /* Remove default padding */
+    margin-top: 0;        /* Remove top margin */
+  }
+  
+li {
+    margin-bottom: 0.5em; /* Add some space between items */
+  }
+
+a {
+    color: blue; /* Change link color to blue */
+}
+
+.small-font {
+    font-size: 15px; /* Adjust this to make the font smaller */
+}
+
+.pure-g {
+	margin-bottom: 40px;
+}
