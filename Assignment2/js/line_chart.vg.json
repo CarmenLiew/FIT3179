@@ -1,0 +1,158 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+        "text": "Number of students in each state from 2016-2021",
+        "subtitle": "Drag below to see the number of students for a particular time period",
+        "subtitleFontSize": 11,
+        "subtitleFontStyle": "italic",
+        "subtitleColor": "gray"
+    },
+    "background": "rgba(0, 0, 0, 0)",
+    "data": {
+        "url": "https://raw.githubusercontent.com/CarmenLiew/FIT3179/refs/heads/main/Assignment2/data/number_of_students_gov_school.csv"
+    },
+    "vconcat": [
+        {
+            "width": 480,
+            "height": 300,
+            "params": [
+                {
+                    "name": "state_highlight",
+                    "select": {"type": "point", "fields": ["State"]},
+                    "bind": "legend"
+                }
+            ],
+            "mark": {
+                "type": "line",
+                "point": true
+            },
+            "encoding": {
+                "x": {
+                    "field": "Year",
+                    "type": "temporal",
+                    "scale": {
+                        "domain": {
+                            "param": "brush"
+                        }
+                    },
+                    "axis": {
+                        "title": "",
+                        "tickCount": 6
+                    }
+                },
+                "y": {
+                    "field": "Number_of_students",
+                    "type": "quantitative",
+                    "axis": {
+                        "title": "Number of Students"
+                    }
+                },
+                "color": {
+                    "field": "State",
+                    "type": "nominal",
+                    "scale": {
+                        "domain": [
+                            "Johor",
+                            "Kedah",
+                            "Kelantan",
+                            "Melaka",
+                            "Negeri Sembilan",
+                            "Pahang",
+                            "Perak",
+                            "Perlis",
+                            "Pulau Pinang",
+                            "Sabah",
+                            "Sarawak",
+                            "Selangor",
+                            "Terengganu",
+                            "W.P. Kuala Lumpur",
+                            "W.P. Labuan",
+                            "W.P. Putrajaya"
+                        ],
+                        "range": [
+                            "#8dd3c7",
+                            "#fccde5",
+                            "#b2df8a",
+                            "#ff7f00",
+                            "#cab2d6",
+                            "#6a3d9a",
+                            "#fdbf6f", 
+                            "#e7cb94",
+                            "#1f78b4", 
+                            "#b15928",
+                            "#fb8072",
+                            "#80b1d3",
+                            "#bebada",
+                            "#bc80bd",
+                            "#ffed6f",
+                            "#e377c2"
+                        ]
+                    }
+                },
+                "opacity": {
+                    "condition": {"param": "state_highlight", "value": 1},
+                    "value": 0.2
+                },
+                "tooltip": [
+                    {
+                        "field": "State",
+                        "type": "nominal",
+                        "title": "State"
+                    },
+                    {
+                        "field": "Year",
+                        "type": "temporal",
+                        "title": "Year",
+                        "timeUnit": "year"
+                    },
+                    {
+                        "field": "Number_of_students",
+                        "type": "quantitative",
+                        "title": "Number of Students"
+                    }
+                ]
+            }
+        },
+        {
+            "width": 480,
+            "height": 60,
+            "mark": {
+                "type": "area",
+                "opacity": 0.6
+            },
+            "params": [
+                {
+                    "name": "brush",
+                    "select": {
+                        "type": "interval",
+                        "encodings": [
+                            "x"
+                        ]
+                    }
+                }
+            ],
+            "encoding": {
+                "x": {
+                    "field": "Year",
+                    "type": "temporal",
+                    "timeUnit": "year",
+                    "axis": {
+                        "tickCount": 6,
+                        "title": "Year"
+                    }
+                },
+                "y": {
+                    "field": "Number_of_students",
+                    "type": "quantitative",
+                    "aggregate": "sum",
+                    "axis": {
+                        "tickCount": 3,
+                        "grid": false,
+                        "title": "Number of Students"
+                    }
+                }
+            }
+        }
+    ],
+    "config": {"title": {"font": "Arial", "fontSize": 20, "anchor": "middle"}}
+}

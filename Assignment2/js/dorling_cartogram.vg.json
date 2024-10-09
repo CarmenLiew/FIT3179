@@ -1,0 +1,187 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "title": {"text":"Completion Rate of Upper Secondary Education in Malaysia", "fontSize": 20, "font": "Arial"},
+  "width": 400,
+  "height": 300,
+  "autosize": {
+    "type": "pad",
+    "resize": true,
+    "contains": "padding"
+  },
+  "padding": 50,
+
+  "config": {
+    "legend": {
+      "gradientDirection": "horizontal",
+      "gradientLength": 100,
+      "gradientThickness": 8,
+      "symbolSize": 60,
+      "labelFontSize": 9,
+      "titleFontSize": 10
+    }
+  },
+
+  "data": [
+    {
+      "name": "states",
+      "url": "https://raw.githubusercontent.com/CarmenLiew/FIT3179/refs/heads/main/Assignment2/data/ne_10m_admin_1_states_provinces.json",
+      "format": {"type": "topojson", "feature": "ne_10m_admin_1_states_provinces"}
+    },
+    {
+      "name": "completion",
+      "url": "https://raw.githubusercontent.com/CarmenLiew/FIT3179/refs/heads/main/Assignment2/data/completion_rate_malaysia.csv",
+      "format": {"type": "csv"},
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum.stage == 'secondary_upper' && datum.sex == 'both' && datum.year == 2021"
+        },
+        {
+          "type": "lookup",
+          "from": "states",
+          "key": "properties.name",
+          "fields": ["state"],
+          "as": ["geo"]
+        },
+        {
+          "type": "filter",
+          "expr": "datum.geo"
+        },
+        {
+          "type": "formula", "as": "centroid",
+          "expr": "geoCentroid('projection', datum.geo)"
+        }
+      ]
+    }
+  ],
+
+  "projections": [
+    {
+      "name": "projection",
+      "type": "equalEarth",
+      "scale": 1900,
+      "center": [106, 4],
+      "translate": [{"signal": "width / 2"}, {"signal": "height / 2"}]
+    }
+  ],
+
+  "scales": [
+    {
+      "name": "size",
+      "domain": {"data": "completion", "field": "completion"},
+      "zero": false,
+      "range": [1000, 5000]
+    },
+    {
+      "name": "color",
+      "type": "linear",
+      "nice": true,
+      "domain": {"data": "completion", "field": "completion"},
+      "range": [
+          "#f3e5f5",  
+          "#e1bee7",  
+          "#d28dd1",  
+          "#c67dcf",  
+          "#b76fcb",  
+          "#a362c5",  
+          "#8c3cb2"   
+      ]
+    }
+  ],
+  
+  "legends": [
+    {
+      "title": "Completion Rate (%)",
+      "orient": "bottom-left",
+      "type": "symbol",
+      "size": "size",
+      "fill": "color",
+      "format": "0.1f",
+      "clipHeight": 16,
+      "direction": "horizontal",
+      "labelLimit": 100,
+      "symbolSize": 80,
+      "tickCount": 5,
+      "titleLimit": 100,
+      "titleOrient": "top",
+      "offset": -20
+    }
+  ],
+
+  "marks": [
+    {
+      "name": "circles",
+      "type": "symbol",
+      "from": {"data": "completion"},
+      "encode": {
+        "enter": {
+          "size": {"scale": "size", "field": "completion"},
+          "fill": {"scale": "color", "field": "completion"},
+          "stroke": {"value": "white"},
+          "strokeWidth": {"value": 1.5},
+          "tooltip": {
+            "signal": "'Completion Rate: ' + format(datum.completion, '0.1f') + '%'"
+          }
+        },
+        "update": {
+          "x": {"field": "centroid[0]", "type": "quantitative"},
+          "y": {"field": "centroid[1]", "type": "quantitative"}
+        }
+      },
+      "transform": [
+        {
+          "type": "force",
+          "static": true,
+          "forces": [
+            {"force": "collide", "radius": {"expr": "sqrt(datum.size) / 2 + 5"}},
+            {"force": "x", "x": "datum.centroid[0]", "strength": 0.1},
+            {"force": "y", "y": "datum.centroid[1]", "strength": 0.1}
+          ]
+        }
+      ]
+    },
+
+    {
+      "type": "text",
+      "from": {"data": "circles"},
+      "encode": {
+        "enter": {
+          "text": {
+            "signal": "datum.datum.state == 'Pulau Pinang' ? 'Pulau' : datum.datum.state == 'Negeri Sembilan' ? 'Negeri' : datum.datum.state == 'Kuala Lumpur' ? 'Kuala' : datum.datum.state"
+          },
+          "fontSize": {"value": 10},
+          "fontWeight": {"value": "bold"},
+          "align": {"value": "center"},
+          "baseline": {"value": "middle"},
+          "fill": {"value": "black"}
+        },
+        "update": {
+          "x": {"field": "x"},
+          "y": {"signal": "datum.datum.state == 'Pulau Pinang' || datum.datum.state == 'Negeri Sembilan' || datum.datum.state == 'Kuala Lumpur' ? datum.y - 5 : datum.y"}
+        }
+      }
+    },
+
+    {
+      "type": "text",
+      "from": {"data": "circles"},
+      "encode": {
+        "enter": {
+          "text": {
+            "signal": "datum.datum.state== 'Pulau Pinang' ? 'Pinang' : datum.datum.state == 'Negeri Sembilan' ? 'Sembilan' : datum.datum.state == 'Kuala Lumpur' ? 'Lumpur' : ''"
+          },
+          "fontSize": {"value": 10},
+          "fontWeight": {"value": "bold"},
+          "align": {"value": "center"},
+          "baseline": {"value": "middle"},
+          "fill": {"value": "black"}
+        },
+        "update": {
+          "x": {"field": "x"},
+          "y": {"signal": "datum.datum.state == 'Pulau Pinang' || datum.datum.state == 'Negeri Sembilan' || datum.datum.state == 'Kuala Lumpur' ? datum.y + 7 : datum.y"}
+        }
+      }
+    }
+  ]
+}
+
