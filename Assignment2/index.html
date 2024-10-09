@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>FIT3179 Assignment 2</title>
+  <!-- Import Vega & Vega-Lite (does not have to be from CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+
+  <!-- Import pure.css -->
+  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css"
+    integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Google font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+  <!-- CSS file -->
+  <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
+
+</head>
+
+<body>
+
+  <div class="page">
+    <!-- Title Container -->
+    <!-- Title of the page -->
+    <h1>Secondary Education Access and Quality in Malaysia</h1>
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <div id="vis1" class="vis-container"></div>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- Subtitle Container -->
+    <div class="subtitle-container">
+      <h2>Insights into Student Demographics and Performance</h2>
+    </div>
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-1 flex-container">
+        <div id="vis2" class="vis-container"></div>
+        <div class="desc description-right">
+          <p><span style="color: rgb(128, 177, 211); font-weight: 600;">Selangor</span> has the highest number of students.
+          This may due to its larger population size and greater development compared to other states.</p>
+          <p>The number of students in <span style="color: rgb(128, 177, 211); font-weight: 600;">Selangor</span> grew by <span style="font-weight: 600;">0.86%</span> between 2016 and 2021.</p>
+        </div>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-1 flex-container">
+        <div id="vis3" class="vis-container"></div>
+        <div class="desc description-right">
+          <p>Although <span style="color: rgb(128, 177, 211); font-weight: 600;">Selangor</span> has the highest number of students, its completion is not the highest. </p>
+          <p><span style="font-weight: 600;">Completion rate</span> may exceed 100% due to students repeating grades or transferring between states.</p>
+          <p><span style="color: rgb(227, 119, 194); font-weight: 600;">Putrajaya</span> has a low student population and completion rate as it is primarily an administrative center with fewer schools.</p>
+        </div>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- Subtitle Container -->
+    <div class="subtitle-container closer-subtitle">
+      <h2>Insights into Teacher Demographics and Gender</h2>
+    </div>
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-1 flex-container">
+        <div id="vis4" class="vis-container"></div>
+        <div class="desc description-right">
+          <p> As there are highest student population in <span style="color: rgb(128, 177, 211); font-weight: 600;">Selangor</span> from the analysis above, the teachers are also the highest overall. It is then followed by <span style="color: rgb(141, 211, 199); font-weight: 600;">Johor.</span></p>
+          <p> The proportion of male teachers is greater than female teachers in each state. </p>
+        </div>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+    
+  <!-- Subtitle Container -->
+  <div class="subtitle-container">
+    <h2>Distribution of the students in different stages</h2>
+  </div>
+  <p style="text-align: center; margin-top: 5px;">Wondering other stages except secondary education? <br> This diagram shows the overall distribution of students in primary, secondary as well as post-secondary education.</p>
+
+  <!-- pure grid group -->
+  <div class="pure-g">
+    <div class="pure-u-1-1">
+      <div id="vis5" class="vis-container"></div>
+    </div>
+  </div>
+  <!-- end pure grid group -->
+
+  <div class="pure-g">
+    <div class="pure-u-1-1 small-font">
+      <p>This visualisation is created by Carmen Liew Jia Wen.</p> 
+      <p>Date: 9th October 2024</p>
+      <p>Data sources:</p>
+      <ul>
+        <li><a href="https://ourworldindata.org/global-education">World in Data</a></li>
+        <li><a href="https://archive.data.gov.my/data/en_US/dataset/number-of-students-at-secondary-level-in-government-government-aided-schools-by-state-malaysia">Number of Secondary School Students</a></li>
+        <li><a href="https://open.dosm.gov.my/data-catalogue/completion_school_state">Completion Rates by State</a></li>
+        <li><a href="https://archive.data.gov.my/data/en_US/dataset/number-of-secondary-school-teachers-in-government-government-aided-schools-by-state-and-sex">Number of Secondary School Teachers</a></li>
+        <li><a href="https://open.dosm.gov.my/data-catalogue/enrolment_school_district">School Enrolment by District</a></li>
+      </ul>
+    </div>
+  </div>
+
+  </div> <!-- end page -->
+
+  <script type="text/javascript">
+    var specVis1 = "js/choropleth_map.vg.json";
+    var specVis2 = "js/line_chart.vg.json";
+    var specVis3 = "js/dorling_cartogram.vg.json";
+    var specVis4 = "js/butterfly_chart.vg.json";
+    var specVis5 = "js/sankey_diagram.vg.json";
+
+    vegaEmbed('#vis1', specVis1).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+
+    vegaEmbed('#vis2', specVis2).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+
+    vegaEmbed('#vis3', specVis3).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+
+    vegaEmbed('#vis4', specVis4).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+
+    vegaEmbed('#vis5', specVis5).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+  </script>
+</body>
+
+</html>
