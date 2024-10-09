@@ -1,0 +1,125 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {"text":"Number of teachers in each state from 2016-2021", 
+            "fontSize": 20, 
+            "font": "Arial",
+            "subtitle": "Select the year below to see the gender distribution of teachers",
+            "subtitleFontSize": 11,
+            "subtitleFontStyle": "italic",
+            "subtitleColor": "gray"
+          },
+  "data": { 
+    "url": "https://raw.githubusercontent.com/CarmenLiew/FIT3179/refs/heads/main/Assignment2/data/number_of_teachers_gov_school.csv",
+    "format": {"type": "csv"}
+  },
+  "background": "rgba(0, 0, 0, 0)",
+  "params": [
+    {
+      "name": "Year_selection",
+      "value": 2021,
+      "bind": {
+        "input": "select",
+        "options": [
+          "2016",
+          "2017",
+          "2018",
+          "2019",
+          "2020",
+          "2021"
+        ],
+        "labels": [
+          "2016",
+          "2017",
+          "2018",
+          "2019",
+          "2020",
+          "2021"
+        ],
+        "name": "Select year: "
+      }
+    }
+  ],
+  "transform": [
+    {"filter":"Year_selection == null || datum.Year == Year_selection"},
+    {"calculate": "datum.Sex == 'Female' ? 'Female' : 'Male'", "as": "gender"},
+    {"calculate": "datum.Sex == 'Female' ? -datum.Number_of_teachers : datum.Number_of_teachers", "as": "signed_teachers"},
+    {"calculate": "abs(datum.Number_of_teachers)", "as": "abs_teachers"}
+  ],
+  "width": 580,
+  "height": 300,
+  "layer": [
+    {
+      "mark": "bar",
+      "encoding": {
+        "y": {
+          "field": "State",
+          "type": "nominal",
+          "axis": {
+            "title": null,
+            "labelPadding": 10,
+            "domain": false,
+            "ticks": false
+          },
+          "sort": "-x"
+        },
+        "x": {
+          "field": "signed_teachers",
+          "type": "quantitative",
+          "title": "Number of Teachers",
+          "axis": {
+            "format": "s",
+            "grid": false,
+            "orient": "top"
+          },
+          "scale": {"domain": [-30000, 30000]}
+        },
+        "color": {
+          "field": "gender",
+          "type": "nominal",
+          "scale": {"range": ["#bc80bd", "#ffbf79"]},  
+          "legend": {"orient": "top", "title": null}
+        },
+        "xOffset": {"field": "gender"},
+        "tooltip": [
+          {"field": "State", "type": "nominal", "title": "State"},
+          {"field": "gender", "type": "nominal", "title": "Gender"},
+          {"field": "abs_teachers", "type": "quantitative", "title": "Teachers", "format": ",d"}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": {"expr": "datum.gender == 'Female' ? 'right' : 'left'"},
+        "baseline": "middle",
+        "dx": {"expr": "datum.gender == 'Female' ? -5 : 5"},
+        "dy": 0
+      },
+      "encoding": {
+        "y": {
+          "field": "State",
+          "type": "nominal",
+          "sort": "-x"
+        },
+        "x": {
+          "field": "signed_teachers",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "abs_teachers",
+          "type": "quantitative",
+          "format": ",d"
+        },
+        "color": {
+          "field": "gender",
+          "type": "nominal",
+          "scale": {"range": ["#bc80bd", "#ffbf79"]}
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {"stroke": null},
+    "axis": {"grid": false}
+  }
+}
