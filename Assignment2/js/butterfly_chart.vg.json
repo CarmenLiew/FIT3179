@@ -1,13 +1,5 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {"text":"Number of teachers in each state from 2016-2021", 
-            "fontSize": 20, 
-            "font": "Arial",
-            "subtitle": "Select the year below to see the gender distribution of teachers",
-            "subtitleFontSize": 11,
-            "subtitleFontStyle": "italic",
-            "subtitleColor": "gray"
-          },
   "data": { 
     "url": "https://raw.githubusercontent.com/CarmenLiew/FIT3179/refs/heads/main/Assignment2/data/number_of_teachers_gov_school.csv",
     "format": {"type": "csv"}
@@ -45,8 +37,8 @@
     {"calculate": "datum.Sex == 'Female' ? -datum.Number_of_teachers : datum.Number_of_teachers", "as": "signed_teachers"},
     {"calculate": "abs(datum.Number_of_teachers)", "as": "abs_teachers"}
   ],
-  "width": 580,
-  "height": 300,
+  "width": 600,
+  "height": 450,
   "layer": [
     {
       "mark": "bar",
