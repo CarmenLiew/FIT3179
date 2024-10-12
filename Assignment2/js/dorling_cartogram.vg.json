@@ -1,8 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
-  "title": {"text":"Completion Rate of Upper Secondary Education in Malaysia", "fontSize": 20, "font": "Arial"},
   "width": 400,
-  "height": 300,
+  "height": 400,
   "autosize": {
     "type": "pad",
     "resize": true,
@@ -59,7 +58,7 @@
     {
       "name": "projection",
       "type": "equalEarth",
-      "scale": 1900,
+      "scale": 2000,
       "center": [106, 4],
       "translate": [{"signal": "width / 2"}, {"signal": "height / 2"}]
     }
@@ -78,14 +77,15 @@
       "nice": true,
       "domain": {"data": "completion", "field": "completion"},
       "range": [
-          "#f3e5f5",  
-          "#e1bee7",  
-          "#d28dd1",  
-          "#c67dcf",  
-          "#b76fcb",  
-          "#a362c5",  
-          "#8c3cb2"   
-      ]
+        "#f3e5f5",  
+        "#e1bee7",  
+        "#d28dd1",  
+        "#c67dcf", 
+        "#b76fcb",  
+        "#a362c5",  
+        "#8c3cb2",  
+        "#57348f" 
+    ] 
     }
   ],
   
@@ -104,7 +104,7 @@
       "tickCount": 5,
       "titleLimit": 100,
       "titleOrient": "top",
-      "offset": -20
+      "offset": -50
     }
   ],
 
@@ -161,7 +161,6 @@
         }
       }
     },
-
     {
       "type": "text",
       "from": {"data": "circles"},
@@ -181,7 +180,68 @@
           "y": {"signal": "datum.datum.state == 'Pulau Pinang' || datum.datum.state == 'Negeri Sembilan' || datum.datum.state == 'Kuala Lumpur' ? datum.y + 7 : datum.y"}
         }
       }
+    },
+    {
+      "type": "text",
+      "encode": {
+        "enter": {
+          "x": {"signal": "width / 2 + 70"},
+          "y": {"signal": "height / 2 - 100"},
+          "text": {"value": "Terengganu"},
+          "fontSize": {"value": 15},
+          "fill": {"value": "#666666"},
+          "align": {"value": "center"},
+          "baseline": {"value": "middle"},
+          "fontStyle": {"value": "italic"},
+          "fontWeight": {"value": "bold"}
+        }
+      }
+    },
+    {
+      "type": "text",
+      "encode": {
+        "enter": {
+          "x": {"signal": "width / 2 + 130"},
+          "y": {"signal": "height / 2 - 100"},
+          "text": {"value": "and"},
+          "fontSize": {"value": 15},
+          "fill": {"value": "blue"},
+          "align": {"value": "center"},
+          "baseline": {"value": "middle"},
+          "fontStyle": {"value": "italic"}
+        }
+      }
+    },
+    {
+      "type": "text",
+      "encode": {
+        "enter": {
+          "x": {"signal": "width / 2 + 100 + 70"}, 
+          "y": {"signal": "height / 2 - 100"},
+          "text": {"value": "Kedah"},
+          "fontSize": {"value": 15},
+          "fill": {"value": "#b15928"},
+          "align": {"value": "center"},
+          "baseline": {"value": "middle"},
+          "fontStyle": {"value": "italic"},
+          "fontWeight": {"value": "bold"}
+        }
+      }
+    },
+    {
+      "type": "text",
+      "encode": {
+        "enter": {
+          "x": {"signal": "width / 2 + 100 + 20"}, 
+          "y": {"signal": "height / 2 - 80"},
+          "text": {"value": "have matching completion rate"},
+          "fontSize": {"value": 15},
+          "fill": {"value": "blue"},
+          "align": {"value": "center"},
+          "baseline": {"value": "middle"},
+          "fontStyle": {"value": "italic"}
+        }
+      }
     }
   ]
 }
-
