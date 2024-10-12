@@ -1,11 +1,10 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": {
-        "text": "Number of students in each state from 2016-2021",
-        "subtitle": "Drag below to see the number of students for a particular time period",
-        "subtitleFontSize": 11,
-        "subtitleFontStyle": "italic",
-        "subtitleColor": "gray"
+        "text": "Drag below to see the number of students for a particular time period",
+        "fontSize": 12,
+        "fontStyle": "italic",
+        "color": "gray"
     },
     "background": "rgba(0, 0, 0, 0)",
     "data": {
@@ -13,7 +12,7 @@
     },
     "vconcat": [
         {
-            "width": 480,
+            "width": 600,
             "height": 300,
             "params": [
                 {
@@ -71,20 +70,20 @@
                         ],
                         "range": [
                             "#8dd3c7",
-                            "#fccde5",
-                            "#b2df8a",
+                            "#b15928",
+                            "#e0b01f",
                             "#ff7f00",
                             "#cab2d6",
-                            "#6a3d9a",
+                            "#ffed6f",
                             "#fdbf6f", 
                             "#e7cb94",
                             "#1f78b4", 
-                            "#b15928",
+                            "#fccde5", 
                             "#fb8072",
                             "#80b1d3",
-                            "#bebada",
+                            "#666666",
                             "#bc80bd",
-                            "#ffed6f",
+                            "#6a3d9a", 
                             "#e377c2"
                         ]
                     }
@@ -108,13 +107,14 @@
                     {
                         "field": "Number_of_students",
                         "type": "quantitative",
-                        "title": "Number of Students"
+                        "title": "Number of Students",
+                        "format": ",d"
                     }
                 ]
             }
         },
         {
-            "width": 480,
+            "width": 600,
             "height": 60,
             "mark": {
                 "type": "area",
