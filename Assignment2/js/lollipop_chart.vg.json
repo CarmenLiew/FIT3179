@@ -1,0 +1,85 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {"url": "https://raw.githubusercontent.com/CarmenLiew/FIT3179/refs/heads/main/Assignment2/data/number_of_teachers_gov_school.csv"},
+  "title": {
+        "text": "Zoom in to see the number of teachers closely",
+        "fontSize": 12,
+        "fontStyle": "italic",
+        "color": "gray"
+    },
+  "background": "rgba(0, 0, 0, 0)",
+  "width": 550,
+  "height": 450,
+  "transform": [
+    {
+      "filter": {
+        "field": "Year",
+        "oneOf": [2001, 2021]
+      }
+    },
+    {
+      "aggregate": [{"op": "sum", "field": "Number_of_teachers", "as": "Total_teachers"}],
+      "groupby": ["State", "Year"]
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "Total_teachers",
+      "type": "quantitative",
+      "title": "Number of Teachers"
+    },
+    "y": {
+      "field": "State",
+      "type": "nominal",
+      "title": "State",
+      "axis": {
+        "offset": 5,
+        "ticks": false,
+        "minExtent": 70,
+        "domain": false
+      }
+    },
+    "tooltip": [
+      {"field": "Year", "type": "ordinal", "title": "Year"},
+      {"field": "Total_teachers", "type": "quantitative", "title": "Number of teachers", "format": ",d"}
+    ]
+  },
+  "layer": [
+    {
+      "mark": "line",
+      "params": [
+        {
+          "name": "grid",
+          "select": "interval",
+          "bind": "scales"
+        }
+      ],
+      "encoding": {
+        "detail": {
+          "field": "State",
+          "type": "nominal"
+        },
+        "color": {"value": "#db646f"}
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true
+      },
+      "encoding": {
+        "color": {
+          "field": "Year",
+          "type": "ordinal",
+          "scale": {
+            "domain": [2001, 2021],
+            "range": ["#e6959c", "#911a24"]
+          },
+          "title": "Year"
+        },
+        "size": {"value": 100},
+        "opacity": {"value": 1}
+      }
+    }
+  ]
+}
