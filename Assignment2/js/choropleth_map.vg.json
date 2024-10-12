@@ -1,15 +1,24 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": "container",
     "title": {
-      "text": "Global Secondary Education Enrolment Ratios, 2021"},
-    "width": 900,
-    "height": 400,
+        "text": "Drag the slider below to see the enrolment ratio from lowest to highest for each country",
+        "fontSize": 12,
+        "fontStyle": "italic",
+        "color": "gray"
+    },
+    "height": 500,
+    "autosize": {
+      "type": "fit",
+      "contains": "padding"
+    },
     "background": "rgba(0, 0, 0, 0)",
     "data": {
       "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/3_choropleth_map/js/ne_110m_admin_0_countries.topojson",
       "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
     },
-    "projection": {"type": "equalEarth"},
+    "projection": {
+      "type": "equalEarth"},
     "params":[
       {
         "name": "TopEnrolmentRatio",
@@ -104,7 +113,7 @@
         },
         "transform": [
           {
-            "calculate": "'Sub-Saharan Africa has the lowest enrolment ratio; in secondary education'",
+            "calculate": "'Sub-Saharan Africa region has the lowest enrolment ratio; in secondary education'",
             "as": "text_annotation_raw"
           },
           {
@@ -117,7 +126,7 @@
           "align": "center",
           "baseline": "middle",
           "dy": -10,
-          "fontSize": 12,
+          "fontSize": 15,
           "color": "blue",
           "fontStyle": "italic"
         },
@@ -126,7 +135,32 @@
           "latitude": { "field": "latitude" },
           "text": { "field": "text_annotation"}
         }
-      } 
+      },
+      {
+        "data": {
+          "values": [
+            {
+              "longitude": 30,
+              "latitude": -40
+            }
+          ]
+        },
+        "mark": {
+          "type": "point",
+          "shape": "arrow",
+          "size": 500,
+          "color": "blue",
+          "fill": "blue"
+        },
+        "encoding": {
+          "longitude": {
+            "field": "longitude"
+          },
+          "latitude": {
+            "field": "latitude"
+          }
+        }
+      }
     ],
-    "config": {"title": {"font": "Arial", "fontSize": 20}} 
+    "config": {"title": {"font": "Arial", "fontSize": 20},  "view": {"stroke": "transparent"}}
   }
