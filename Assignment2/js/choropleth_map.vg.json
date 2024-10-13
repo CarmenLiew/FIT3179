@@ -1,166 +1,140 @@
 {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "width": "container",
-    "title": {
-        "text": "Drag the slider below to see the enrolment ratio from lowest to highest for each country",
-        "fontSize": 12,
-        "fontStyle": "italic",
-        "color": "gray"
-    },
-    "height": 500,
-    "autosize": {
-      "type": "fit",
-      "contains": "padding"
-    },
-    "background": "rgba(0, 0, 0, 0)",
-    "data": {
-      "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/3_choropleth_map/js/ne_110m_admin_0_countries.topojson",
-      "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
-    },
-    "projection": {
-      "type": "equalEarth"},
-    "params":[
-      {
-        "name": "TopEnrolmentRatio",
-        "value": 144,
-        "bind": {
-          "input": "range", 
-          "min": 1, 
-          "max": 144, 
-          "step": 1,
-          "name": "Enrolment Ratio"
-        }
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "title": {
+      "text": "Drag the slider below to see the enrolment ratio from lowest to highest for each country",
+      "fontSize": 12,
+      "fontStyle": "italic",
+      "color": "gray"
+  },
+  "height": 500,
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
+  },
+  "background": "rgba(0, 0, 0, 0)",
+  "data": {
+    "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/3_choropleth_map/js/ne_110m_admin_0_countries.topojson",
+    "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
+  },
+  "projection": {
+    "type": "equalEarth"},
+  "params":[
+    {
+      "name": "TopEnrolmentRatio",
+      "value": 144,
+      "bind": {
+        "input": "range", 
+        "min": 1, 
+        "max": 144, 
+        "step": 1,
+        "name": "Enrolment Ratio"
       }
-    ],
-    
-    "layer": [
-      {
-        "transform": [
-          {
-            "calculate": "'Data is not available in ' + datum.properties.NAME",
-            "as": "note"
+    }
+  ],
+  
+  "layer": [
+    {
+      "transform": [
+        {
+          "calculate": "'Data is not available in ' + datum.properties.NAME",
+          "as": "note"
+        }
+      ],
+      "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"},
+      "encoding": {"tooltip": {"field": "note"}}
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/7_others/oceans.topojson",
+        "format": {"type": "topojson", "feature": "oceans"}
+      },
+      "mark": {"type": "geoshape", "fill": "#c6dbef"}
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/2_symbol_map/js/WorldMapWithGraticules.topojson",
+        "format": {"type": "topojson", "feature": "ne_110m_graticules_30"}
+      },
+      "mark": {"type": "geoshape", "fill": null, "stroke": "lightgray"}
+    },
+    {
+      "transform": [
+        {
+          "lookup": "properties.NAME",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/CarmenLiew/FIT3179/refs/heads/main/week9_homework/data/world_gross_enrollment_ratio.csv"
+            },
+            "key": "Country",
+            "fields": ["GrossEduRatio"]
           }
-        ],
-        "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"},
-        "encoding": {"tooltip": {"field": "note"}}
-      },
-      {
-        "data": {
-          "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/7_others/oceans.topojson",
-          "format": {"type": "topojson", "feature": "oceans"}
         },
-        "mark": {"type": "geoshape", "fill": "#c6dbef"}
-      },
-      {
-        "data": {
-          "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/2_symbol_map/js/WorldMapWithGraticules.topojson",
-          "format": {"type": "topojson", "feature": "ne_110m_graticules_30"}
+        {
+          "filter": "datum.GrossEduRatio <= TopEnrolmentRatio"}
+      ],
+      "mark": {"type": "geoshape", "stroke": "white"},
+      "encoding": {
+        "color": {
+          "field": "GrossEduRatio",
+          "type": "quantitative",
+          "title": "Gross Enrolment Ratio (%)",
+          "scale": {
+            "type": "threshold",
+            "domain": [1, 50, 100, 120, 150],
+            "range": [
+                "#e9d5ff", 
+                "#d8b2ff", 
+                "#b283ff", 
+                "#9750e3", 
+                "#6f2c91", 
+                "#4b2c6f" 
+              ]
+          }
         },
-        "mark": {"type": "geoshape", "fill": null, "stroke": "lightgray"}
-      },
-      {
-        "transform": [
+        "tooltip": [
+          {"field": "properties.NAME", "type": "nominal", "title": "Country"},
           {
-            "lookup": "properties.NAME",
-            "from": {
-              "data": {
-                "url": "https://raw.githubusercontent.com/CarmenLiew/FIT3179/refs/heads/main/week9_homework/data/world_gross_enrollment_ratio.csv"
-              },
-              "key": "Country",
-              "fields": ["GrossEduRatio"]
-            }
-          },
-          {
-            "filter": "datum.GrossEduRatio <= TopEnrolmentRatio"}
-        ],
-        "mark": {"type": "geoshape", "stroke": "white"},
-        "encoding": {
-          "color": {
             "field": "GrossEduRatio",
             "type": "quantitative",
-            "title": "Gross Enrolment Ratio (%)",
-            "scale": {
-              "type": "threshold",
-              "domain": [1, 50, 100, 120, 150],
-              "range": [
-                  "#e9d5ff", 
-                  "#d8b2ff", 
-                  "#b283ff", 
-                  "#9750e3", 
-                  "#6f2c91", 
-                  "#4b2c6f" 
-                ]
-            }
-          },
-          "tooltip": [
-            {"field": "properties.NAME", "type": "nominal", "title": "Country"},
-            {
-              "field": "GrossEduRatio",
-              "type": "quantitative",
-              "title": "Enrolment Ratio (%)",
-              "format": ".1f"
-            }
-          ]
-        }
-      },
-      {
-        "data":{
-          "values": [
-            {"longitude": 30, 
-              "latitude": -50
-            }
-          ]
-        },
-        "transform": [
-          {
-            "calculate": "'Sub-Saharan Africa region has the lowest enrolment ratio; in secondary education'",
-            "as": "text_annotation_raw"
-          },
-          {
-            "calculate": "split(datum.text_annotation_raw, ';')",
-            "as": "text_annotation"
+            "title": "Enrolment Ratio (%)",
+            "format": ".1f"
           }
-        ],
-        "mark": {
-          "type": "text",
-          "align": "center",
-          "baseline": "middle",
-          "dy": -10,
-          "fontSize": 15,
-          "color": "blue",
-          "fontStyle": "italic"
-        },
-        "encoding": {
-          "longitude": { "field": "longitude" },
-          "latitude": { "field": "latitude" },
-          "text": { "field": "text_annotation"}
-        }
-      },
-      {
-        "data": {
-          "values": [
-            {
-              "longitude": 30,
-              "latitude": -40
-            }
-          ]
-        },
-        "mark": {
-          "type": "point",
-          "shape": "arrow",
-          "size": 500,
-          "color": "blue",
-          "fill": "blue"
-        },
-        "encoding": {
-          "longitude": {
-            "field": "longitude"
-          },
-          "latitude": {
-            "field": "latitude"
-          }
-        }
+        ]
       }
-    ],
-    "config": {"title": {"font": "Arial", "fontSize": 20},  "view": {"stroke": "transparent"}}
-  }
+    },
+    {
+      "data":{
+        "values": [
+          {"longitude": 30, 
+            "latitude": -50
+          }
+        ]
+      },
+      "transform": [
+        {
+          "calculate": "'Malaysia\\'s overall enrolment ratio is moderately high; among all countries'",
+          "as": "text_annotation_raw"
+        },
+        {
+          "calculate": "split(datum.text_annotation_raw, ';')",
+          "as": "text_annotation"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "middle",
+        "dy": -10,
+        "fontSize": 15,
+        "color": "blue",
+        "fontStyle": "italic"
+      },
+      "encoding": {
+        "longitude": { "field": "longitude" },
+        "latitude": { "field": "latitude" },
+        "text": { "field": "text_annotation"}
+      }
+    }],
+  "config": {"view": {"stroke": "transparent"}}
+}
