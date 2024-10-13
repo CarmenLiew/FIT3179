@@ -41,7 +41,7 @@
     },
     "tooltip": [
       {"field": "Year", "type": "ordinal", "title": "Year"},
-      {"field": "Total_teachers", "type": "quantitative", "title": "Number of teachers", "format": ",d"}
+      {"field": "Total_teachers", "type": "quantitative", "title": "Number of Teachers", "format": ",d"}
     ]
   },
   "layer": [
