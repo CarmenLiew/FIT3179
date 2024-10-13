@@ -104,6 +104,11 @@
           "fields": ["yc", "size"],
           "ops": ["mean", "sum"],
           "as": ["yc", "totalSize"]
+        },
+        {
+          "type": "formula",
+          "expr": "datum.grpId === 'primary' ? 'Primary' : (datum.grpId === 'secondary' ? 'Secondary' : (datum.grpId === 'post_secondary' ? 'Post Secondary' : datum.grpId))",
+          "as": "stageLabel"
         }
       ]
     }
@@ -146,23 +151,23 @@
       "W.P. Putrajaya"
     ],
     "range": [
-      "#8dd3c7",
-      "#b15928",
-      "#e0b01f",
-      "#ff7f00",
-      "#cab2d6",
-      "#ffed6f",
-      "#fdbf6f", 
-      "#e7cb94",
-      "#1f78b4", 
-      "#fccde5", 
-      "#fb8072",
-      "#80b1d3",
-      "#666666",
-      "#bc80bd",
-      "#6a3d9a", 
-      "#e377c2"
-  ]
+        "#8dd3c7",
+        "#b15928",
+        "#e0b01f",
+        "#ff7f00",
+        "#cab2d6",
+        "#ffed6f",
+        "#666666", 
+        "#e7cb94",
+        "#1f78b4", 
+        "#fccde5", 
+        "#fb8072",
+        "#80b1d3",
+        "#fdbf6f", 
+        "#bc80bd",
+        "#6a3d9a", 
+        "#e377c2"
+    ]
   }
     
   ],
@@ -246,12 +251,12 @@
           "y": {"field": "yc", "scale": "y"},
           "align": {"value": "left"},
           "baseline": {"value": "middle"},
-          "text": {"field": "grpId"},
+          "text": {"field": "stageLabel"},
           "fontSize": {"value": 9},
           "fontWeight": {"value": "bold"},
           "fill": {"value": "black"},
           "tooltip": {
-            "signal": "datum.grpId + '   ' + format(datum.totalSize, ',.0f') + ' students'"
+            "signal": "datum.stageLabel + '   ' + format(datum.totalSize, ',.0f') + ' students'"
           }
         }
       }
