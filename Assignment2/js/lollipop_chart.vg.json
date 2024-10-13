@@ -8,7 +8,7 @@
         "color": "gray"
     },
   "background": "rgba(0, 0, 0, 0)",
-  "width": 550,
+  "width": "container",
   "height": 450,
   "transform": [
     {
