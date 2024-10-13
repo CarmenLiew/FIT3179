@@ -12,7 +12,7 @@
     },
     "vconcat": [
         {
-            "width": 600,
+            "width": 420,
             "height": 300,
             "params": [
                 {
@@ -75,13 +75,13 @@
                             "#ff7f00",
                             "#cab2d6",
                             "#ffed6f",
-                            "#fdbf6f", 
+                            "#666666", 
                             "#e7cb94",
                             "#1f78b4", 
                             "#fccde5", 
                             "#fb8072",
                             "#80b1d3",
-                            "#666666",
+                            "#fdbf6f", 
                             "#bc80bd",
                             "#6a3d9a", 
                             "#e377c2"
@@ -114,7 +114,7 @@
             }
         },
         {
-            "width": 600,
+            "width": 420,
             "height": 60,
             "mark": {
                 "type": "area",
