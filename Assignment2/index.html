@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <title>FIT3179 Assignment 2</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secondary Education Quality in Malaysia</title>
     <!-- Import Vega & Vega-Lite (does not have to be from CDN) -->
     <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
@@ -11,7 +12,6 @@
     <!-- Import pure.css -->
     <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css"
         integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Google font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,118 +25,102 @@
 </head>
 
 <body>
-
     <div class="page">
-        <!-- Title Container -->
         <h1>Secondary Education Quality in Malaysia</h1>
 
         <div class="subtitle-container">
             <h2>Global Secondary Education Enrolment Ratio, 2021</h2>
         </div>
-        <!-- pure grid group -->
-        <div class="pure-g hover-container">
-            <div class="pure-u-1-1">
+
+        <div class="pure-g">
+            <div class="pure-u-1-1 hover-container">
                 <div id="vis1" class="vis-container centered-map"></div>
             </div>
         </div>
-        <!-- end pure grid group -->
 
-        <!-- Subtitle Container -->
         <div class="subtitle-container">
             <h2>Insights into Student Demographics and Completion Rate</h2>
         </div>
 
-        <!-- pure grid group -->
-        <div class="pure-g hover-container">
-            <div class="pure-u-2-3">
+        <div class="vis-row">
+            <div class="vis-col hover-container">
                 <div id="vis2" class="vis-container"></div>
             </div>
-            <div class="pure-u-1-3">
-                <div class="description-right">
+            <div class="vis-col">
+                <div class="description-right description-adjust">
                     <p>Number of students (2016-2021)</p>
-                    <p><span style="color: rgb(128, 177, 211); font-weight: 600;">Selangor</span> has the highest number of students. This may be due to its larger population size and greater development compared to other states. The number of students grew by <span style="font-weight: 600; font-size: 23px;">0.86%</span> between 2016 and 2021.</p>
-                    <p>On the other hand, <span style="color: rgb(106, 61, 154); font-weight: 600;">W.P. Labuan</span> and <span style="color: rgb(227, 119, 194); font-weight: 600;">W.P. Putrajaya</span> have relatively low student numbers, with maximum of 10,464 and 6,549 students respectively in 2021.</p>
+                    <p><span style="color: rgb(128, 177, 211); font-weight: 600;">Selangor</span> has the highest number of students. This is due to its larger population size and greater development compared to other states. The number of students grew by <span style="font-weight: 600; font-size: 23px;">0.86%</span> between 2016 and 2021.</p>
+                    <p>On the other hand, <span style="color: rgb(106, 61, 154); font-weight: 600;">Labuan</span> and <span style="color: rgb(227, 119, 194); font-weight: 600;"> Putrajaya</span> have relatively low student numbers, with maximum of 10,464 and 6,549 students respectively in 2021.</p>
                 </div>
             </div>
         </div>
 
-        <div class="pure-g hover-container">
-            <div class="pure-u-1-3">
-                <div class="description-left">
+        <div class="vis-row">
+            <div class="vis-col">
+                <div class="description-left description-adjust">
                     <p>Completion rate in Upper Secondary</p>
-                    <p><span style="font-weight: 600;">Completion rate</span> may exceed <span style="font-weight: 600; font-size: 23px;">100%</span> due to students repeating
-                        grades or transferring between states.</p>
-                    <p>Despite having the largest student population, <span style="color: rgb(128, 177, 211); font-weight: 600;">Selangor</span> does not achieve the highest completion rates. This could be attributed to various economic factors, where families in urban regions may face pressures that result in students dropping out. </p>
-                    <p><span style="color: rgb(227, 119, 194); font-weight: 600;">Putrajaya</span> has a low student
-                        population and completion rate as it is primarily an administrative center with fewer schools.
-                    </p>
+                    <p><span style="font-weight: 600;">Completion rate</span> may exceed <span style="font-weight: 600; font-size: 23px;">100%</span> due to students repeating grades or transferring between states.</p>
+                    <p>Despite having the largest student population, <span style="color: rgb(128, 177, 211); font-weight: 600;">Selangor</span> does not achieve the highest completion rates. This could be attributed to various economic factors, where families in urban regions may face pressures that result in students dropping out.</p>
+                    <p><span style="color: rgb(227, 119, 194); font-weight: 600;">Putrajaya</span> has a low student population and completion rate as it is primarily an administrative center with fewer schools.</p>
                 </div>
             </div>
-            <div class="pure-u-2-3">
-                <div id="vis3" class="vis-container"></div>
+            <div class="vis-col hover-container">
+                <div id="vis3" class="vis-container"></div> <!-- Move vis3 to the right -->
             </div>
         </div>
-        <!-- end pure grid group -->
 
-        <!-- Subtitle Container -->
-        <div class="subtitle-container closer-subtitle">
+        <div class="subtitle-container">
             <h2>Insights into Teacher Demographics and Gender</h2>
         </div>
 
-        <!-- pure grid group -->
-        <div class="pure-g hover-container">
-            <div class="pure-u-2-3">
+        <div class="vis-row">
+            <div class="vis-col hover-container">
                 <div id="vis4" class="vis-container"></div>
             </div>
-            <div class="pure-u-1-3">
-                <div class="description-right">
+            <div class="vis-col">
+                <div class="description-right description-adjust">
                     <p>Number of teachers over a decade</p>
                     <p>All states experienced an increase in the number of teachers over the ten-year period.</p>
-                    <p>Notably, <span style="color: rgb(227, 119, 194); font-weight: 600;">Putrajaya</span> had no teachers in 2001, as it was only established in 1995, resulting in the absence of schools at that time. </p>
+                    <p>Notably, <span style="color: rgb(227, 119, 194); font-weight: 600;">Putrajaya</span> had no teachers in 2001, as it was only established in 1995, resulting in the absence of schools at that time.</p>
                     <p>Besides, <span style="color: rgb(128, 177, 211); font-weight: 600;">Selangor</span>, having a larger student population, has the highest number of teachers compared to other states.</p>
                 </div>
             </div>
         </div>
-        <!-- end pure grid group -->
 
-        <!-- pure grid group -->
-        <div class="pure-g hover-container">
-            <div class="pure-u-1-3">
-                <div class="description-left">
+        <div class="vis-row">
+            <div class="vis-col">
+                <div class="description-left description-vis5">
                     <p>Gender distribution</p>
-                <p>The proportion of <span style="color: rgb(188, 128, 189); font-weight: 600;">female</span> teachers is greater than that of <span style="color: rgb(255, 191, 121); font-weight: 600;">male</span> teachers in every state. </p>
-                <p>It has been claimed that Malaysia has up to <span style="font-weight: 600; font-size: 23px;">40%</span> more women in the workforce compared to other ASEAN countries.</p>
-                <p>This trend could be influenced by traits often stereotypically linked to women, such as empathy, patience, and caregiving.</p>
+                    <p>The proportion of <span style="color: rgb(188, 128, 189); font-weight: 600;">female</span> teachers is greater than that of <span style="color: rgb(255, 191, 121); font-weight: 600;">male</span> teachers in every state.</p>
+                    <p>It has been claimed that Malaysia has up to <span style="font-weight: 600; font-size: 23px;">40%</span> more women in the workforce compared to other ASEAN countries.</p>
+                    <p>This trend could be influenced by traits often stereotypically linked to women, such as empathy, patience, and caregiving.</p>
+                </div>
             </div>
-            </div>
-            <div class="pure-u-2-3">
+            <div class="vis-col hover-container">
                 <div id="vis5" class="vis-container"></div>
             </div>
         </div>
-        <!-- end pure grid group -->
 
-        <!-- Subtitle Container -->
         <div class="subtitle-container">
             <h2>Distribution of the students in different stages</h2>
         </div>
-        <p style="text-align: center; margin-top: 5px; font-size: 18px;">Wondering about other stages except secondary education? <p>
-        <p style="text-align: center; margin-top: 5px; font-size: 18px;">This diagram shows student distribution by three education stages. <p>
 
-        <!-- pure grid group -->
-        <div class="pure-g hover-container">
-            <div class="pure-u-1-1">
+        <p style="text-align: center; margin-top: 5px; font-size: 18px;">Wondering about other stages except secondary education?</p>
+        <p style="text-align: center; margin-top: 5px; font-size: 18px;">This diagram shows student distribution by three education stages.</p>
+
+        <div class="pure-g">
+            <div class="pure-u-1-1 hover-container">
                 <div id="vis6" class="vis-container"></div>
             </div>
         </div>
-        <!-- end pure grid group -->
 
         <div class="pure-g">
-            <div class="pure-u-1-1 small-font" style="line-height: 1.6; margin: 15px 0; font-size: 14px;">
-                <p><strong>This visualization is created by Carmen Liew Jia Wen (33033943).</strong></p>
+            <div class="pure-u-1-1 small-font">
+                <p><strong>This visualisation is created by Carmen Liew Jia Wen (33033943).</strong></p>
                 <p><em>Last updated: 12th October 2024</em></p>
                 <p>Data sources:</p>
-                <ul style="padding-left: 20px; list-style-type: disc;">
-                    <li><a href="https://ourworldindata.org/global-education" target="_blank">Global Education Ratio</a> - Our World in Data (Updated: 16th June 2024)</li>
+                <ul>
+                    <li><a href="https://ourworldindata.org/global-education" target="_blank">Global Education Enrolment Ratio</a> - Our World in Data (Updated: 16th June 2024)</li>
                     <li><a href="https://archive.data.gov.my/data/en_US/dataset/number-of-students-at-secondary-level-in-government-government-aided-schools-by-state-malaysia" target="_blank">Secondary School Students by State</a> - data.gov.my (Updated: 23rd June 2023)</li>
                     <li><a href="https://open.dosm.gov.my/data-catalogue/completion_school_state" target="_blank">Completion Rates by State</a> - OpenDOSM (Updated: 1st Sept 2024)</li>
                     <li><a href="https://archive.data.gov.my/data/en_US/dataset/number-of-secondary-school-teachers-in-government-government-aided-schools-by-state-and-sex" target="_blank">Secondary School Teachers by State and Gender</a> - data.gov.my (Updated: 26th June 2023)</li>
@@ -144,8 +128,7 @@
                 </ul>
             </div>
         </div>
-
-    </div> <!-- end page -->
+    </div>
 
     <script type="text/javascript">
         var specVis1 = "js/choropleth_map.vg.json";
@@ -155,30 +138,29 @@
         var specVis5 = "js/butterfly_chart.vg.json";
         var specVis6 = "js/sankey_diagram.vg.json";
 
-        vegaEmbed('#vis1', specVis1).then(function (result) {
+        vegaEmbed('#vis1', specVis1).then(function(result) {
             // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
         }).catch(console.error);
 
-        vegaEmbed('#vis2', specVis2).then(function (result) {
+        vegaEmbed('#vis2', specVis2).then(function(result) {
             // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
         }).catch(console.error);
 
-        vegaEmbed('#vis3', specVis3).then(function (result) {
+        vegaEmbed('#vis3', specVis3).then(function(result) {
             // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
         }).catch(console.error);
 
-        vegaEmbed('#vis4', specVis4).then(function (result) {
+        vegaEmbed('#vis4', specVis4).then(function(result) {
             // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
         }).catch(console.error);
 
-        vegaEmbed('#vis5', specVis5).then(function (result) {
+        vegaEmbed('#vis5', specVis5).then(function(result) {
             // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
         }).catch(console.error);
 
-        vegaEmbed('#vis6', specVis6).then(function (result) {
+        vegaEmbed('#vis6', specVis6).then(function(result) {
             // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
         }).catch(console.error);
     </script>
 </body>
-
 </html>
