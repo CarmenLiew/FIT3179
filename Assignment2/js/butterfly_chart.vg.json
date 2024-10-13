@@ -75,7 +75,7 @@
         "tooltip": [
           {"field": "State", "type": "nominal", "title": "State"},
           {"field": "gender", "type": "nominal", "title": "Gender"},
-          {"field": "abs_teachers", "type": "quantitative", "title": "Number of teachers", "format": ",d"}
+          {"field": "abs_teachers", "type": "quantitative", "title": "Number of Teachers", "format": ",d"}
         ]
       }
     },
