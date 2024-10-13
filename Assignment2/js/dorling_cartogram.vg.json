@@ -119,7 +119,7 @@
           "stroke": {"value": "white"},
           "strokeWidth": {"value": 1.5},
           "tooltip": {
-            "signal": "'Completion Rate: ' + format(datum.completion, '0.1f') + '%'"
+            "signal": "{'title': '', 'Completion Rate (%)': format(datum.completion, '0.1f')}"
           }
         },
         "update": {
