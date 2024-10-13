@@ -1,13 +1,12 @@
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
-  "width": 400,
+  "width": 280,
   "height": 400,
   "autosize": {
     "type": "pad",
     "resize": true,
     "contains": "padding"
   },
-  "padding": 50,
 
   "config": {
     "legend": {
@@ -104,7 +103,7 @@
       "tickCount": 5,
       "titleLimit": 100,
       "titleOrient": "top",
-      "offset": -50
+      "offset": -80
     }
   ],
 
@@ -153,7 +152,7 @@
           "fontWeight": {"value": "bold"},
           "align": {"value": "center"},
           "baseline": {"value": "middle"},
-          "fill": {"value": "black"}
+          "fill": {"signal": "datum.datum.state == 'Kedah' || datum.datum.state == 'Terengganu' || datum.datum.state == 'Kelantan' ? 'white' : 'black'" }
         },
         "update": {
           "x": {"field": "x"},
@@ -189,7 +188,7 @@
           "y": {"signal": "height / 2 - 100"},
           "text": {"value": "Terengganu"},
           "fontSize": {"value": 15},
-          "fill": {"value": "#666666"},
+          "fill": {"value": "#fdbf6f"},
           "align": {"value": "center"},
           "baseline": {"value": "middle"},
           "fontStyle": {"value": "italic"},
